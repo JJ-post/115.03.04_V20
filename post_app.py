@@ -237,4 +237,3 @@ for group in groups:
         
         st.markdown(rows_html, unsafe_allow_html=True)
 
-
