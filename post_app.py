@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-
+import base64  #
 # --- 強制深色模式 CSS 與網頁設定 ---
 st.set_page_config(page_title="甲佣試算一覽表", layout="centered")
 st.markdown("""
@@ -154,7 +154,21 @@ def load_data():
 df = load_data()
 
 # --- 網頁標題與註解區 ---
-st.title("📮 甲佣試算一覽表")
+# 將本機圖片轉為可顯示的編碼
+def get_image_base64(image_path):
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode()
+
+# ⚠️ 請將 'your_image.png' 換成您 Q版卡通郵筒圖片的實際檔名（請和程式碼放同一個資料夾）
+img_base64 = get_image_base64('your_image.png')
+
+# 結合圖片與文字印出標題
+st.markdown(f"""
+    <h1 style="display: flex; align-items: center;">
+        <img src="data:image/png;base64,{img_base64}" width="45" style="margin-right: 12px;">
+        甲佣試算一覽表
+    </h1>
+""", unsafe_allow_html=True)
 
 st.markdown("""
 <div style='font-size: 14px; color: #94A3B8; line-height: 1.5; margin-bottom: 15px;'>
@@ -236,3 +250,4 @@ for group in groups:
         rows_html += f"<div style='display: flex; justify-content: space-between; padding-top: 12px; margin-top: 8px; border-top: 1px dashed #475569; font-size: 16px; font-weight: bold;'><span style='color: #FAFAFA;'>合計</span><span style='color: #FF4B4B;'>{sum_yearly_amt:,} 元</span></div></div>"
         
         st.markdown(rows_html, unsafe_allow_html=True)
+
