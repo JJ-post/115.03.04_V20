@@ -154,15 +154,15 @@ def load_data():
 df = load_data()
 
 # --- 網頁標題與註解區 ---
-# 將本機圖片轉為可顯示的編碼
+# 1. 將本機圖片轉為可顯示的編碼
 def get_image_base64(image_path):
     with open(image_path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode()
 
-# ⚠️ 請將 'your_image.png' 換成您 Q版卡通郵筒圖片的實際檔名（請和程式碼放同一個資料夾）
+# 2. ⚠️ 請將 'https://raw.githubusercontent.com/JJ-post/115.03.04_V20/refs/heads/main/ChatGPT%20Image%202026%E5%B9%B43%E6%9C%884%E6%97%A5%20%E4%B8%8B%E5%8D%8804_46_46.png' 換成您實際的檔名（需和程式碼放同一個資料夾）
 img_base64 = get_image_base64('your_image.png')
 
-# 結合圖片與文字印出標題
+# 3. 結合圖片與文字印出標題
 st.markdown(f"""
     <h1 style="display: flex; align-items: center;">
         <img src="data:image/png;base64,{img_base64}" width="45" style="margin-right: 12px;">
@@ -250,4 +250,5 @@ for group in groups:
         rows_html += f"<div style='display: flex; justify-content: space-between; padding-top: 12px; margin-top: 8px; border-top: 1px dashed #475569; font-size: 16px; font-weight: bold;'><span style='color: #FAFAFA;'>合計</span><span style='color: #FF4B4B;'>{sum_yearly_amt:,} 元</span></div></div>"
         
         st.markdown(rows_html, unsafe_allow_html=True)
+
 
