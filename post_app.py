@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import base64  #
+
 # --- 強制深色模式 CSS 與網頁設定 ---
 st.set_page_config(page_title="甲佣試算一覽表", layout="centered")
 st.markdown("""
@@ -154,21 +154,7 @@ def load_data():
 df = load_data()
 
 # --- 網頁標題與註解區 ---
-# 1. 將本機圖片轉為可顯示的編碼
-def get_image_base64(image_path):
-    with open(image_path, "rb") as img_file:
-        return base64.b64encode(img_file.read()).decode()
-
-# 2. ⚠️ 請將 'https://raw.githubusercontent.com/JJ-post/115.03.04_V20/refs/heads/main/ChatGPT%20Image%202026%E5%B9%B43%E6%9C%884%E6%97%A5%20%E4%B8%8B%E5%8D%8804_46_46.png' 換成您實際的檔名（需和程式碼放同一個資料夾）
-img_base64 = get_image_base64('your_image.png')
-
-# 3. 結合圖片與文字印出標題
-st.markdown(f"""
-    <h1 style="display: flex; align-items: center;">
-        <img src="data:image/png;base64,{img_base64}" width="45" style="margin-right: 12px;">
-        甲佣試算一覽表
-    </h1>
-""", unsafe_allow_html=True)
+st.title("📮 甲佣試算一覽表")
 
 st.markdown("""
 <div style='font-size: 14px; color: #94A3B8; line-height: 1.5; margin-bottom: 15px;'>
